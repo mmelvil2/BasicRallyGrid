@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BasicRallyGrid</title>
+
+    <script type="text/javascript" src="/apps/2.1/sdk.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function () {
+                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",launch:function(){console.log("launch"),this._loadData()},_loadData:function(){console.log("_loadData");Ext.create("Rally.data.wsapi.Store",{model:"User Story",autoLoad:!0,listeners:{load:function(o,t,a){console.log("got data!",o,t,a),this._loadGrid(o)},scope:this},fetch:["FormattedID","Name","Owner","ScheduleState"]})},_loadGrid:function(o){console.log("_loadGrid");var t=Ext.create("Rally.ui.grid.Grid",{store:o,columnCfgs:["FormattedID","Name","Owner","ScheduleState"]});console.log("my grid",t),this.add(t),console.log("what is this?",this)}});
+
+            Rally.launchApp('CustomApp', {
+                name:"BasicRallyGrid",
+                parentRepos:"",
+                version:"0.1.1"
+            });
+
+        });
+    </script>
+
+
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+</body>
+</html>
